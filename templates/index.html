@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>សាកលវិទ្យាល័យ RUPP | ផ្ទាំងគ្រប់គ្រង</title>
+    <link rel="icon" type="image/x-icon" href="/static/image/rupp.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/style-js.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="/static/image/rupp.png" alt="Rupp Logo" class="logo">
+            <span>សាកលវិទ្យាល័យ RUPP</span>
+        </div>
+        <nav class="sidebar-nav">
+            <p class="nav-section-title">ម៉ឺនុយចម្បង</p>
+            
+            <a href="#" class="nav-link active" data-target="dashboard">
+                <ion-icon name="grid-outline"></ion-icon>
+                <span>វិភាគផ្ទាំងគ្រប់គ្រង</span>
+            </a>
+            
+            <a href="#" class="nav-link" data-target="timetable">
+                <ion-icon name="calendar-outline"></ion-icon>
+                <span>កាលវិភាគរបស់ខ្ញុំ</span>
+            </a>
+            
+            <a href="#" class="nav-link" data-target="attendance">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                <span>ស្រង់វត្តមាន</span>
+            </a>
+            
+            <hr class="nav-divider">
+            
+            <p class="nav-section-title">ឧបករណ៍ថ្នាក់រៀន</p>
+            
+            <a href="#" class="nav-link" data-target="study_materials">
+                <ion-icon name="book-outline"></ion-icon>
+                <span>ឯកសារសិក្សា</span>
+            </a>
+            <a href="#" class="nav-link" data-target="grades_exams">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <span>ពិន្ទុ និងការប្រឡង</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper">
+        <!-- TOPBAR -->
+        <header class="topbar" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: var(--surface); border-bottom: 1px solid var(--border);">
+            <div class="topbar_search" style="display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; width: 300px;">
+                <ion-icon name="search-outline" style="color: var(--text-muted);"></ion-icon>
+                <input type="search" placeholder="ស្វែងរកសិស្ស វគ្គសិក្សា…" style="border: none; background: transparent; outline: none; width: 100%; font-family: inherit; font-size: 14px;">
+            </div>
+            <div class="topbar_action" style="display: flex; align-items: center; gap: 16px;">
+                <button type="button" style="background: transparent; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer;"><ion-icon name="notifications-outline"></ion-icon></button>
+                <button type="button" id="profile-toggle" class="topbar_profile" aria-expanded="false" aria-controls="profile-menu" style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: #dbeafe; color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">SV</div>
+                    <div>
+                        <p style="font-size: 14px; font-weight: 600; color: var(--text-dark);">Prof. Dr. MAO VISAL</p>
+                        <p style="font-size: 12px; color: var(--text-muted);">Computer Science Dept.</p>
+                    </div>
+                    <ion-icon name="chevron-down-outline" class="profile-chevron"></ion-icon>
+                </button>
+                <div id="profile-menu" class="profile-menu" hidden>
+                    <button type="button" id="view-profile-btn" class="profile-menu-item">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <span>View Profile</span>
+                    </button>
+                    <button type="button" id="logout-btn" class="profile-menu-item danger">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+
+        </header>
+
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="tab-dashboard" class="tab-section active">
+                <div class="stats-grid">
+                    <div class="card stat-card"><div><p class="stat-label">សិស្សសរុប</p><h3 class="stat-value">47</h3></div><div class="stat-icon icon-blue"><ion-icon name="school"></ion-icon></div></div>
+                    <div class="card stat-card green"><div><p class="stat-label">វត្តមានថ្ងៃនេះ</p><h3 class="stat-value">42</h3></div><div class="stat-icon icon-green"><ion-icon name="log-in"></ion-icon></div></div>
+                    <div class="card stat-card"><div><p class="stat-label">អវត្តមានថ្ងៃនេះ</p><h3 class="stat-value">02</h3></div><div class="stat-icon icon-red"><ion-icon name="alert-circle"></ion-icon></div></div>
+                    <div class="card stat-card"><div><p class="stat-label">យឺតថ្ងៃនេះ</p><h3 class="stat-value">05</h3></div><div class="stat-icon icon-orange"><ion-icon name="time"></ion-icon></div></div>
+                </div>
+
+                <div class="charts-row-2">
+                    <div class="card"><h3 class="chart-title">របាយការណ៍វត្តមានសរុប</h3><div class="chart-container" style="min-height: 280px;"><canvas id="lineChart"></canvas></div></div>
+                    <div class="card"><h3 class="chart-title">សិស្សតាមថ្នាក់</h3><div class="chart-container" style="min-height: 280px;"><canvas id="barChart"></canvas></div></div>
+                </div>
+
+                <div class="charts-row-3">
+                    <div class="card"><h3 class="chart-title">សិស្សតាមភេទ</h3><div class="chart-container" style="min-height: 220px; display: flex; justify-content: center;"><canvas id="donutChart"></canvas></div></div>
+                    <div class="card">
+                        <h3 class="chart-title">អ្នកមានវត្តមានល្អបំផុត</h3>
+                        <div class="attendant-list">
+                            <div class="attendant-item"><div class="attendant-info"><img src="https://i.pravatar.cc/150?img=2"><span class="attendant-name">Brooklyn Simmons</span></div><div class="attendant-stats"><span class="pct">100%</span><span class="days">30 days</span></div></div>
+                            <div class="attendant-item"><div class="attendant-info"><img src="https://i.pravatar.cc/150?img=6"><span class="attendant-name">Cody Fisher</span></div><div class="attendant-stats"><span class="pct">100%</span><span class="days">30 days</span></div></div>
+                        </div>
+                    </div>
+                    <div class="card"><h3 class="chart-title">អវត្តមានប្រចាំសប្តាហ៍</h3><div class="chart-container" style="min-height: 220px;"><canvas id="radarChart"></canvas></div></div>
+                </div>
+            </section>
+
+            <!-- Timetable Section -->
+            <section id="tab-timetable" class="tab-section">
+                <div class="table-container" style="background: white; padding-bottom: 2rem;">
+                    <div style="padding: 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                        <h3 class="chart-title" style="margin: 0;">កាលវិភាគប្រចាំសប្តាហ៍របស់ខ្ញុំ</h3>
+                        <span style="background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 20px;">ឆមាសទី១ ឆ្នាំ២០២៣</span>
+                    </div>
+                    <table style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px; text-align: center;">ម៉ោង</th>
+                                <th style="text-align: center;">ច័ន្ទ</th>
+                                <th style="background: #f0fdf4; color: var(--primary); text-align: center;">អង្គារ (ថ្ងៃនេះ)</th>
+                                <th style="text-align: center;">ពុធ</th>
+                                <th style="text-align: center;">ព្រហស្បតិ៍</th>
+                                <th style="text-align: center;">សុក្រ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--text-muted); font-weight: 500;">09:00 AM</td>
+                                <td style="padding: 10px;">
+                                    <div class="timetable-class" data-course="CS101" data-group="Group A - Morning">
+                                        CS101 (Group A)<br>
+                                        <span style="font-weight: 400; font-size: 10px; color: #60a5fa;">បន្ទប់ 204</span>
+                                    </div>
+                                </td>
+                                <td style="background: #f8fafc; padding: 10px;"></td>
+                                <td style="padding: 10px;"></td>
+                                <td style="padding: 10px;"></td>
+                                <td style="padding: 10px;"></td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-muted); font-weight: 500;">10:30 AM</td>
+                                <td style="padding: 10px;"></td>
+                                <td style="background: #f8fafc; padding: 10px;"></td>
+                                <td style="padding: 10px;">
+                                    <div class="timetable-class" data-course="CS201" data-group="Group B - Afternoon" style="background: #fdf4ff; color: #c026d3; border-color: #f5d0fe;">
+                                        CS201 (Group B)<br>
+                                        <span style="font-weight: 400; font-size: 10px; color: #e879f9;">បន្ទប់ 301</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 10px;"></td>
+                                <td style="padding: 10px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="tab-attendance" class="tab-section">
+                <div class="attendance-layout">
+                    <div class="attendance-main">
+                        <div class="card" style="margin-bottom: 1.5rem;">
+                            <h3 class="chart-title">កត់ត្រាវត្តមានតាមមុខវិជ្ជា</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">វគ្គសិក្សារបស់ខ្ញុំ</label>
+                                    <select id="course-select" class="form-control">
+                                        <option value="CS101">Intro to Programming (CS101)</option>
+                                        <option value="CS201">Database Systems (CS201)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">ក្រុម</label>
+                                    <select id="group-select" class="form-control">
+                                        <option value="Group A - Morning">Group A - Morning</option>
+                                        <option value="Group B - Afternoon">Group B - Afternoon</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">កាលបរិច្ឆេទ</label>
+                                    <input type="date" value="2023-01-09" class="form-control">
+                                </div>
+                                <div>
+                                    <button class="btn-primary" style="width: 100%;">ទាញយកបញ្ជីឈ្មោះ</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>អត្តលេខ</th>
+                                        <th>ឈ្មោះ</th>
+                                        <th class="radio-center">វត្តមាន</th>
+                                        <th class="radio-center">អវត្តមាន</th>
+                                        <th class="radio-center">ច្បាប់</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="student-table-body">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                            <div style="padding: 1.25rem 1.5rem; background: #f8fafc; border-top: 1px solid var(--border); text-align: right;">
+                                <button id="save-attendance-btn" class="btn-dark">រក្សាទុកវត្តមាន</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Stats Widget -->
+                    <div class="attendance-sidebar">
+                        <div class="card" style="text-align: center;">
+                            <h3 style="font-size: 15px; font-weight: 700; text-align: left; margin-bottom: 1rem;">Jan 2023</h3>
+                            <p style="font-size: 13px; color: var(--text-muted);">Calendar Widget placeholder...</p>
+                        </div>
+                        <div class="mini-stat yellow"><div class="icon"><ion-icon name="layers-outline"></ion-icon></div><div><h3>5</h3><p>សិស្សសរុប</p></div></div>
+                        <div class="mini-stat green"><div class="icon"><ion-icon name="checkmark-circle-outline"></ion-icon></div><div><h3 id="stat-present">0</h3><p>វត្តមានថ្ងៃនេះ</p></div></div>
+                        <div class="mini-stat red"><div class="icon"><ion-icon name="alert-circle-outline"></ion-icon></div><div><h3 id="stat-absent">0</h3><p>អវត្តមានថ្ងៃនេះ</p></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== STUDY MATERIALS TAB ===================== -->
+            <section id="tab-study_materials" class="tab-section">
+                <div class="action-bar">
+                    <h2 class="chart-title" style="margin:0;">ឯកសារសិក្សា (Study Materials)</h2>
+                    <button class="btn-primary" onclick="showToast('មុខងារបង្ហោះឯកសារកំពុងដំណើរការ...', 'success')">
+                        <ion-icon name="cloud-upload-outline" style="font-size: 20px;"></ion-icon> បង្ហោះឯកសារថ្មី
+                    </button>
+                </div>
+
+                <!-- M5 Materials -->
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 8px;">ឯកសារថ្នាក់ M5 (Computer Science)</h3>
+                <div class="material-grid">
+                    <div class="material-card">
+                        <ion-icon name="document-text" class="material-icon icon-pdf"></ion-icon>
+                        <div class="material-info">
+                            <h4>Chapter 1: Intro to Programming.pdf</h4>
+                            <p>ទំហំ: 2.4 MB • បានបង្ហោះ: 12-មករា-2023</p>
+                        </div>
+                    </div>
+                    <div class="material-card">
+                        <ion-icon name="document-text" class="material-icon icon-pdf"></ion-icon>
+                        <div class="material-info">
+                            <h4>Chapter 2: Data Structures.pdf</h4>
+                            <p>ទំហំ: 4.1 MB • បានបង្ហោះ: 18-មករា-2023</p>
+                        </div>
+                    </div>
+                    <div class="material-card">
+                        <ion-icon name="document" class="material-icon icon-doc"></ion-icon>
+                        <div class="material-info">
+                            <h4>Assignment 1 Guidelines.docx</h4>
+                            <p>ទំហំ: 1.1 MB • បានបង្ហោះ: 20-មករា-2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- M6 Materials -->
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 8px;">ឯកសារថ្នាក់ M6 (Web Development)</h3>
+                <div class="material-grid">
+                    <div class="material-card">
+                        <ion-icon name="document-text" class="material-icon icon-pdf"></ion-icon>
+                        <div class="material-info">
+                            <h4>Lecture 1: HTML & CSS Basics.pdf</h4>
+                            <p>ទំហំ: 3.5 MB • បានបង្ហោះ: 10-មករា-2023</p>
+                        </div>
+                    </div>
+                    <div class="material-card">
+                        <ion-icon name="document" class="material-icon icon-doc"></ion-icon>
+                        <div class="material-info">
+                            <h4>Midterm Project Requirements.docx</h4>
+                            <p>ទំហំ: 800 KB • បានបង្ហោះ: 22-មករា-2023</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== GRADES & EXAMS TAB ===================== -->
+            <section id="tab-grades_exams" class="tab-section">
+                <h2 class="chart-title">ពិន្ទុ និងការប្រឡង (Grades & Exams)</h2>
+                
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">ជ្រើសរើសថ្នាក់ (Filter Class)</label>
+                            <select id="grade-class-filter" class="form-control">
+                                <option value="all">ថ្នាក់ទាំងអស់ (All Classes)</option>
+                                <option value="M5">ថ្នាក់ M5</option>
+                                <option value="M6">ថ្នាក់ M6</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">មុខវិជ្ជា (Subject)</label>
+                            <select class="form-control">
+                                <option>Computer Science / Web Dev</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ឆមាស (Semester)</label>
+                            <select class="form-control">
+                                <option>ឆមាសទី១ ឆ្នាំ២០២៣</option>
+                            </select>
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="save-grades-btn" class="btn-dark" style="width: 100%; height: 42px;">
+                                រក្សាទុកពិន្ទុ (Save Grades)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>អត្តលេខ (ID)</th>
+                                <th>ឈ្មោះ (Name)</th>
+                                <th>ថ្នាក់ (Class)</th>
+                                <th style="text-align: center;">កិច្ចការផ្ទះ (20%)</th>
+                                <th style="text-align: center;">ប្រឡងពាក់កណ្តាល (30%)</th>
+                                <th style="text-align: center;">ប្រឡងបញ្ចប់ (50%)</th>
+                                <th style="text-align: center;">សរុប (100%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grades-table-body">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Toast Element -->
+    <div id="toast" class="toast">
+        <ion-icon name="checkmark-circle" id="toast-icon"></ion-icon>
+        <span id="toast-message">Message</span>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="profile-modal" hidden>
+        <div class="profile-modal-content" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+            <button type="button" id="profile-modal-close" class="profile-modal-close" aria-label="Close profile">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div class="profile-avatar-large">SV</div>
+            <h2 id="profile-modal-title">Prof. Dr. MAO VISAL</h2>
+            <p class="profile-role">Computer Science Dept.</p>
+            <div class="profile-details">
+                <div>
+                    <span>Email</span>
+                    <strong>visal.mao@rupp.edu.kh</strong>
+                </div>
+                <div>
+                    <span>Faculty</span>
+                    <strong>Science</strong>
+                </div>
+                <div>
+                    <span>Position</span>
+                    <strong>Professor</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
